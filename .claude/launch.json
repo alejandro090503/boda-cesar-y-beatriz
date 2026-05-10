@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "boda-cesar-beatriz",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
+      "name": "boda-cesar-y-beatriz",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3482", "C:\\Users\\aleja\\boda-cesar-y-beatriz"],
+      "port": 3482
     }
   ]
 }

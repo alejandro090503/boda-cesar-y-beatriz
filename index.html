@@ -295,36 +295,68 @@ section{padding:64px 22px}
 #calendar{background:var(--ink3);padding:54px 22px;text-align:center;border-top:1px solid rgba(189,139,45,.09);border-bottom:1px solid rgba(189,139,45,.09);}
 .cal-sub{font-size:13px;color:var(--cream);opacity:.6;line-height:1.9;margin:14px 0 28px}
 
-/* ── ITINERARY · S-CURVE ──────────────────────────────── */
-#itinerary{background:var(--ink);overflow:hidden}
-.timeline{margin-top:44px;position:relative;padding:18px 0 6px;min-height:400px;}
-.tl-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:visible;}
-.tl-svg-bg{stroke:rgba(189,139,45,.18);stroke-width:1;fill:none;stroke-dasharray:2 5;}
-.tl-svg-path{stroke:var(--peach);stroke-width:1.6;stroke-linecap:round;fill:none;filter:drop-shadow(0 0 5px rgba(189,139,45,.35));}
-.tl-row{position:relative;z-index:1;min-height:158px;display:flex;align-items:center;margin-bottom:14px;}
-.tl-row[data-side="left"]{padding-left:58px;padding-right:44%;justify-content:flex-start;text-align:left;}
-.tl-row[data-side="right"]{padding-right:58px;padding-left:44%;justify-content:flex-end;text-align:right;}
-.tl-row-inner{max-width:168px;display:flex;flex-direction:column;gap:2px;position:relative;padding:6px 4px;}
-.tl-row-inner::before{content:'';position:absolute;inset:-6px -14px;background:radial-gradient(ellipse at center,rgba(255,255,255,.92) 0%,rgba(255,255,255,.55) 55%,rgba(255,255,255,0) 100%);z-index:-1;border-radius:16px;pointer-events:none;}
-.tl-t{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--peach);letter-spacing:2.5px;text-transform:uppercase;line-height:1;}
-.tl-ev{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--cream);font-weight:400;line-height:1.22;margin-top:4px;}
-.tl-de{font-size:11px;color:var(--cream);opacity:.58;line-height:1.55;margin-top:3px;}
-.tl-row-inner>*{opacity:0;transform:translateY(8px);transition:opacity .55s var(--smooth),transform .55s var(--smooth);}
-.tl-row[data-side="left"] .tl-row-inner>*{transform:translateY(8px) translateX(-6px)}
-.tl-row[data-side="right"] .tl-row-inner>*{transform:translateY(8px) translateX(6px)}
-.tl-row.on .tl-row-inner>*{opacity:1;transform:translateY(0) translateX(0)}
-.tl-row.on .tl-t{transition-delay:.08s}.tl-row.on .tl-ev{transition-delay:.20s}.tl-row.on .tl-de{transition-delay:.32s}
-.tl-dot{position:absolute;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:var(--ink);border:1.5px solid var(--peach);transform:scale(0);transition:transform .55s var(--spring),box-shadow .55s,background .55s;z-index:2;}
-.tl-row[data-side="left"] .tl-dot{left:22px}.tl-row[data-side="right"] .tl-dot{right:22px}
-.tl-row.on .tl-dot{transform:scale(1);background:var(--peach);box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 12px rgba(189,139,45,.55),0 0 24px rgba(189,139,45,.3);}
-.tl-orn{position:absolute;top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;border:1px dashed rgba(189,139,45,.25);opacity:0;animation:tlOrnRotate 22s linear infinite;transition:opacity .9s ease;pointer-events:none;z-index:1;}
-.tl-row[data-side="left"] .tl-orn{left:9px}.tl-row[data-side="right"] .tl-orn{right:9px}
-.tl-row.on .tl-orn{opacity:1}
-@keyframes tlOrnRotate{to{transform:rotate(360deg)}}
-.tl-pulse{position:absolute;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;border:1.5px solid var(--peach);opacity:0;pointer-events:none;z-index:1;}
-.tl-row[data-side="left"] .tl-pulse{left:20px}.tl-row[data-side="right"] .tl-pulse{right:20px}
-.tl-row.on .tl-pulse{animation:tlPulse 2.8s ease-out 1}
-@keyframes tlPulse{0%{transform:scale(1);opacity:.85}100%{transform:scale(3);opacity:0}}
+/* ── ITINERARY V3 — Centered Glowing Timeline ── */
+#itinerary{background:var(--ink);overflow:visible;padding-left:24px;padding-right:24px;}
+.itv3{position:relative;display:flex;flex-direction:column;align-items:center;padding:10px 0 10px;}
+.itv3-track{
+  position:absolute;left:50%;transform:translateX(-50%);
+  top:0;bottom:0;width:1px;z-index:0;
+  background:linear-gradient(to bottom,
+    transparent 0%,
+    rgba(189,139,45,.35) 10%,
+    rgba(201,60,24,.25) 45%,
+    rgba(189,139,45,.30) 80%,
+    transparent 100%);
+}
+.itv3-glow{
+  position:absolute;left:50%;transform:translateX(-50%);
+  top:0;width:5px;height:110px;
+  background:linear-gradient(to bottom,
+    transparent,
+    rgba(189,139,45,.55) 20%,
+    rgba(189,139,45,.90) 50%,
+    rgba(189,139,45,.55) 80%,
+    transparent);
+  filter:blur(3px);border-radius:6px;
+  z-index:1;pointer-events:none;
+}
+.itv3-item{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;padding:30px 16px 4px;width:100%;
+}
+.itv3-gem{
+  width:9px;height:9px;
+  background:linear-gradient(135deg,#E8C96E 30%,#7A5A1A);
+  transform:rotate(45deg);border-radius:2px;
+  box-shadow:0 0 0 4px rgba(189,139,45,.12),0 0 18px rgba(189,139,45,.45);
+  margin-bottom:18px;flex-shrink:0;
+}
+.itv3-gem-red{
+  background:linear-gradient(135deg,#e87a6a 30%,#8b1a0a);
+  box-shadow:0 0 0 4px rgba(201,60,24,.14),0 0 18px rgba(201,60,24,.45);
+}
+.itv3-gem-mid{
+  background:linear-gradient(135deg,#C4B06E 30%,#5A3A10);
+  box-shadow:0 0 0 4px rgba(189,139,45,.10),0 0 18px rgba(189,139,45,.38);
+}
+.itv3-time{
+  font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;
+  letter-spacing:8px;color:var(--ink2);line-height:1;margin-bottom:6px;
+  text-indent:8px;
+}
+.itv3-ev{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:14px;color:rgba(250,248,243,.55);
+  letter-spacing:3px;text-transform:uppercase;line-height:1.5;
+  text-indent:3px;
+}
+.itv3-sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:12px;color:var(--peach);opacity:.75;
+  letter-spacing:1px;margin-top:4px;line-height:1.4;
+}
+.itv3-item:last-child{padding-bottom:10px;}
 
 /* ── DRESSCODE ────────────────────────────────────────── */
 #dresscode{background:var(--ink2)}
@@ -733,32 +765,45 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <span class="lbl">El gran día</span>
   <h2 class="ttl">Itinerario</h2>
   <div class="gline"></div>
-  <div class="timeline" id="tlWrap">
-    <svg class="tl-svg" id="tlSvg" preserveAspectRatio="none" aria-hidden="true">
-      <path class="tl-svg-bg"   id="tlPathBg"/>
-      <path class="tl-svg-path" id="tlPath"/>
-    </svg>
+  <div class="itv3">
+    <div class="itv3-track"></div>
+    <div class="itv3-glow" id="itvGlow"></div>
 
-    <div class="tl-row" data-side="left">
-      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-      <div class="tl-row-inner"><p class="tl-t">12:00 PM</p><p class="tl-ev">Ceremonia Religiosa</p><p class="tl-de">Parroquia Santa María de Guadalupe · Tapaxco</p></div>
+    <div class="itv3-item rv">
+      <div class="itv3-gem"></div>
+      <div class="itv3-time">12:00</div>
+      <div class="itv3-ev">Ceremonia Religiosa</div>
+      <div class="itv3-sub">Parroquia Santa María de Guadalupe</div>
     </div>
-    <div class="tl-row" data-side="right">
-      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-      <div class="tl-row-inner"><p class="tl-t">2:00 PM</p><p class="tl-ev">Ceremonia Civil</p><p class="tl-de">Mismo lugar</p></div>
+
+    <div class="itv3-item rv">
+      <div class="itv3-gem itv3-gem-red"></div>
+      <div class="itv3-time">2:00</div>
+      <div class="itv3-ev">Ceremonia Civil</div>
+      <div class="itv3-sub">Mismo lugar</div>
     </div>
-    <div class="tl-row" data-side="left">
-      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-      <div class="tl-row-inner"><p class="tl-t">3:30 PM</p><p class="tl-ev">Recepción</p><p class="tl-de">Auditorio de la Concepción II · Tapaxco</p></div>
+
+    <div class="itv3-item rv">
+      <div class="itv3-gem itv3-gem-mid"></div>
+      <div class="itv3-time">3:30</div>
+      <div class="itv3-ev">Recepción</div>
+      <div class="itv3-sub">Auditorio de la Concepción II</div>
     </div>
-    <div class="tl-row" data-side="right">
-      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-      <div class="tl-row-inner"><p class="tl-t">8:30 PM</p><p class="tl-ev">Brindis</p><p class="tl-de">¡Por los novios y el amor!</p></div>
+
+    <div class="itv3-item rv">
+      <div class="itv3-gem itv3-gem-red"></div>
+      <div class="itv3-time">8:30</div>
+      <div class="itv3-ev">Brindis</div>
+      <div class="itv3-sub">¡Por los novios y el amor!</div>
     </div>
-    <div class="tl-row" data-side="left">
-      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
-      <div class="tl-row-inner"><p class="tl-t">∞</p><p class="tl-ev">Despedida</p><p class="tl-de">Hasta que el cuerpo aguante 😁</p></div>
+
+    <div class="itv3-item rv">
+      <div class="itv3-gem"></div>
+      <div class="itv3-time">∞</div>
+      <div class="itv3-ev">Despedida</div>
+      <div class="itv3-sub">Hasta que el cuerpo aguante 😁</div>
     </div>
+
   </div>
 </section>
 
@@ -1247,18 +1292,7 @@ function scrollAnims() {
 
   gsap.from(['#calendar .cal-sub','#calBtn'], { opacity:0, y:18, scale:.96, duration:.65, stagger:.14, ease:'back.out(1.3)', scrollTrigger:{ trigger:'#calendar', start:'top 84%', once:true } });
 
-  buildTimelinePath();
-  ScrollTrigger.create({
-    trigger:'#itinerary', start:'top 78%', end:'bottom 58%', scrub:0.6,
-    onUpdate(self) {
-      const data = window.__tlData;
-      if (!data) return;
-      const { path, len, rows } = data;
-      path.style.strokeDashoffset = len * (1 - self.progress);
-      const n = Math.ceil(self.progress * rows.length);
-      rows.forEach((r,i) => r.classList.toggle('on', i < n));
-    }
-  });
+  initItinerary();
 
   gsap.from('.dc-sub', { opacity:0, y:18, duration:.65, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 82%', once:true } });
   gsap.from(['.dc-cols','.dc-note'], { opacity:0, y:22, duration:.6, stagger:.12, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 80%', once:true } });
@@ -1274,46 +1308,50 @@ function scrollAnims() {
   initGallery();
 }
 
-/* ── TIMELINE PATH ───────────────────────────────────── */
-function buildTimelinePath() {
-  const wrap = document.getElementById('tlWrap');
-  const svgEl = document.getElementById('tlSvg');
-  const pathBg = document.getElementById('tlPathBg');
-  const pathFg = document.getElementById('tlPath');
-  if (!wrap || !svgEl || !pathBg || !pathFg) return;
+/* ── ITINERARY V3 — Centered Glowing Timeline ── */
+function initItinerary(){
+  var glow    = document.getElementById('itvGlow');
+  var section = document.getElementById('itinerary');
+  var items   = document.querySelectorAll('.itv3-item');
+  if(!glow || !section) return;
 
-  const rows = Array.from(wrap.querySelectorAll('.tl-row'));
-  const W = wrap.offsetWidth;
-  const cx = W / 2;
-
-  let d = '';
-  rows.forEach((row, i) => {
-    const side = row.dataset.side;
-    const dotEl = row.querySelector('.tl-dot');
-    if (!dotEl) return;
-    const ry = row.offsetTop + row.offsetHeight / 2;
-    const x = side === 'left' ? cx - 22 : cx + 22;
-    dotEl.style[side === 'left' ? 'left' : 'right'] = '29px';
-
-    if (i === 0) d += `M ${cx} 0 L ${cx} ${ry} L ${x} ${ry}`;
-    else {
-      const prev = rows[i-1];
-      const prevSide = prev.dataset.side;
-      const prevY = prev.offsetTop + prev.offsetHeight / 2;
-      const prevX = prevSide === 'left' ? cx - 22 : cx + 22;
-      d += ` M ${prevX} ${prevY} Q ${cx} ${(prevY+ry)/2} ${x} ${ry}`;
+  ScrollTrigger.create({
+    trigger: section,
+    start: 'top 58%',
+    end: 'bottom 42%',
+    scrub: 1.8,
+    onUpdate: function(self){
+      var track = section.querySelector('.itv3-track');
+      if(!track) return;
+      var h = track.offsetHeight - 55;
+      glow.style.top = (self.progress * h) + 'px';
     }
   });
 
-  const totalH = wrap.scrollHeight;
-  pathBg.setAttribute('d', d);
-  pathFg.setAttribute('d', d);
+  items.forEach(function(item){
+    var gem   = item.querySelector('.itv3-gem');
+    var isRed = gem.classList.contains('itv3-gem-red');
+    var gc    = isRed ? '201,60,24' : '189,139,45';
 
-  const len = pathFg.getTotalLength ? pathFg.getTotalLength() : 800;
-  pathFg.style.strokeDasharray = len;
-  pathFg.style.strokeDashoffset = len;
+    gsap.fromTo(gem,
+      {scale:0, opacity:0},
+      {scale:1, opacity:1, duration:0.6, ease:'back.out(2.8)',
+       scrollTrigger:{trigger:item, start:'top 86%', once:true},
+       onComplete:function(){
+         gsap.timeline()
+           .to(gem,{scale:1.4, filter:'drop-shadow(0 0 20px rgba('+gc+',1))',    duration:0.30, ease:'power2.out'})
+           .to(gem,{scale:1,   filter:'drop-shadow(0 0 5px rgba('+gc+',.35))',   duration:0.28, ease:'power2.in'})
+           .to(gem,{scale:1.2, filter:'drop-shadow(0 0 14px rgba('+gc+',.8))',   duration:0.22, ease:'power2.out'})
+           .to(gem,{scale:1,   filter:'drop-shadow(0 0 4px rgba('+gc+',.25))',   duration:0.32, ease:'power2.in'});
+       }
+      });
 
-  window.__tlData = { path:pathFg, len, rows };
+    var els = [item.querySelector('.itv3-time'), item.querySelector('.itv3-ev'), item.querySelector('.itv3-sub')].filter(Boolean);
+    gsap.fromTo(els,
+      {y:14, opacity:0},
+      {y:0, opacity:1, duration:0.8, ease:'power2.out', stagger:0.08,
+       scrollTrigger:{trigger:item, start:'top 86%', once:true}});
+  });
 }
 
 /* ── INJECT SECTION WAVES ─────────────────────────────── */
