@@ -342,8 +342,8 @@ section{padding:64px 22px}
 }
 .itv3-time{
   font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;
-  letter-spacing:8px;color:var(--ink2);line-height:1;margin-bottom:6px;
-  text-indent:8px;
+  letter-spacing:8px;color:var(--peach);line-height:1;margin-bottom:6px;
+  text-indent:8px;text-shadow:0 0 22px rgba(201,60,24,.35);
 }
 .itv3-ev{
   font-family:'Cormorant Garamond',serif;font-style:italic;
@@ -360,16 +360,17 @@ section{padding:64px 22px}
 
 /* ── DRESSCODE ────────────────────────────────────────── */
 #dresscode{background:var(--ink2)}
-.dc-sub{text-align:center;font-size:13px;color:var(--cream);opacity:.62;line-height:1.9;margin:14px 0 32px}
-.dc-cols{display:flex;gap:0;margin:8px 0 26px;border:1px solid rgba(201,60,24,.2);border-radius:16px;overflow:hidden;background:rgba(250,248,243,.3);}
-.dc-col{flex:1;padding:26px 16px 24px;text-align:center}
-.dc-col:first-child{border-right:1px solid rgba(201,60,24,.15)}
-.dc-col-ico{width:50px;height:50px;margin:0 auto 14px;background:rgba(201,60,24,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;}
-.dc-col-ico svg{width:26px;height:26px;color:var(--peach)}
-.dc-col-ttl{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:15px;letter-spacing:3px;text-transform:uppercase;color:var(--cream);margin-bottom:18px;}
-.dc-list{list-style:none;padding:0;margin:0;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:400;color:var(--cream);line-height:2;text-align:left;}
-.dc-list li{padding-left:14px;position:relative;opacity:.82}
-.dc-list li::before{content:'✦';position:absolute;left:0;top:3px;font-size:7px;color:var(--peach);opacity:.7;}
+.dc-main-style{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(32px,8vw,46px);
+  font-weight:300;font-style:italic;text-align:center;color:var(--peach);
+  letter-spacing:3px;margin:10px 0 36px;line-height:1.2;
+}
+.dc-cols{display:flex;gap:0;margin:0 0 26px;border:1px solid rgba(201,60,24,.18);border-radius:20px;overflow:hidden;background:rgba(250,248,243,.5);}
+.dc-col{flex:1;padding:36px 16px 32px;text-align:center}
+.dc-col:first-child{border-right:1px solid rgba(201,60,24,.12)}
+.dc-col-ico{width:86px;height:86px;margin:0 auto 18px;background:rgba(201,60,24,.06);border-radius:50%;border:1px solid rgba(201,60,24,.15);display:flex;align-items:center;justify-content:center;}
+.dc-col-ico svg{width:52px;height:52px;color:var(--peach);stroke-width:1.0;}
+.dc-col-ttl{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--cream);opacity:.8;}
 .dc-note{background:rgba(201,60,24,.04);border-left:2px solid var(--peach-accent);padding:18px;border-radius:0 8px 8px 0;font-size:12px;color:var(--cream);opacity:.68;line-height:1.8;}
 .dc-note strong{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--peach-accent);display:block;margin-bottom:6px;}
 
@@ -572,9 +573,6 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <div class="h-particles" id="hPart"></div>
 
   <div class="h-cnt" id="hCnt">
-    <p class="h-we" id="hWe">Nos casamos</p>
-    <div class="h-div" id="hDiv"><span class="h-div-dot">✦ · ✦</span></div>
-
     <div class="h-name-wrap">
       <span class="h-name-wind-line"></span>
       <div class="h-clip"><span class="h-name" id="hN1">César</span></div>
@@ -831,43 +829,43 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <span class="lbl">Vestimenta</span>
   <h2 class="ttl">Código de Vestimenta</h2>
   <div class="gline"></div>
-  <p class="dc-sub"><em style="font-family:'Cormorant Garamond',serif;font-size:17px">Formal · Elegante</em></p>
+
+  <p class="dc-main-style">Formal · Elegante</p>
 
   <div class="dc-cols">
     <div class="dc-col">
       <div class="dc-col-ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="5.5" r="3"/><path d="M10 8.5 L8.5 11 L12 13 L15.5 11 L14 8.5"/>
-          <path d="M8.5 11 L6 22 H18 L15.5 11"/><line x1="10" y1="9.5" x2="12" y2="11.5"/><line x1="14" y1="9.5" x2="12" y2="11.5"/>
+        <!-- Caballero con traje y corbata -->
+        <svg viewBox="0 0 48 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="10" r="7" stroke-width="1.2"/>
+          <path d="M24 17 L20 23 L24 28 L28 23 Z" stroke-width="1.2"/>
+          <path d="M20 23 L12 46 H36 L28 23" stroke-width="1.2"/>
+          <line x1="24" y1="28" x2="24" y2="46" stroke-width="1.0"/>
+          <path d="M12 46 L10 68 H38 L36 46" stroke-width="1.2"/>
+          <line x1="18" y1="46" x2="16" y2="68" stroke-width="0.9"/>
+          <line x1="30" y1="46" x2="32" y2="68" stroke-width="0.9"/>
         </svg>
       </div>
       <p class="dc-col-ttl">Caballeros</p>
-      <ul class="dc-list">
-        <li>Traje formal</li>
-        <li>Negro · Gris · Navy<br>Champagne · Arena</li>
-        <li>Camisa con corbata<br>o moño</li>
-        <li>Zapatos de vestir</li>
-      </ul>
     </div>
     <div class="dc-col">
       <div class="dc-col-ico">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="5.5" r="3"/><path d="M8 10 Q12 15 16 10 L18.5 22 H5.5 Z"/>
+        <!-- Dama con vestido largo -->
+        <svg viewBox="0 0 48 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="10" r="7" stroke-width="1.2"/>
+          <path d="M16 20 Q24 28 32 20 L38 68 H10 Z" stroke-width="1.2"/>
+          <path d="M16 20 L12 36" stroke-width="0.9" opacity=".6"/>
+          <path d="M32 20 L36 36" stroke-width="0.9" opacity=".6"/>
+          <path d="M13 50 Q24 44 35 50" stroke-width="0.8" opacity=".5"/>
         </svg>
       </div>
       <p class="dc-col-ttl">Damas</p>
-      <ul class="dc-list">
-        <li>Vestido largo o cocktail</li>
-        <li>Negro · Champagne<br>Dorado · Arena · Nude</li>
-        <li>Tacones o sandalias<br>elegantes</li>
-        <li>Accesorios dorados</li>
-      </ul>
     </div>
   </div>
 
   <div class="dc-note" id="dcNote">
     <strong>Por favor evitar:</strong>
-    Blanco (reservado para la novia) · Rojo intenso · Colores neón.
+    Blanco (reservado para la novia) · Rojo intenso.
   </div>
 </section>
 
@@ -1093,19 +1091,17 @@ window.addEventListener('scroll', () => {
 
 /* ── HERO ANIMATIONS ─────────────────────────────────── */
 function heroAnim() {
-  gsap.set(['#hWe','#hDiv','#hLine','#hDate','#hScroll'], { opacity: 0 });
+  gsap.set(['#hLine','#hDate','#hScroll'], { opacity: 0 });
   gsap.set(['#hN1','#hN2','#hAmp'], { yPercent: 110 });
 
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
   tl
-    .to('#hWe',    { opacity: 1, duration: .7 }, .1)
-    .to('#hDiv',   { opacity: 1, duration: .5 }, .3)
-    .to('#hN1',    { yPercent: 0, duration: 1 }, .45)
-    .to('#hAmp',   { yPercent: 0, duration: .8 }, .7)
-    .to('#hN2',    { yPercent: 0, duration: 1  }, .82)
-    .to('#hLine',  { opacity: .7, duration: .6 }, 1.15)
-    .to('#hDate',  { opacity: 1, duration: .7  }, 1.28)
-    .to('#hScroll',{ opacity: 1, duration: .5  }, 1.7);
+    .to('#hN1',    { yPercent: 0, duration: 1 }, .15)
+    .to('#hAmp',   { yPercent: 0, duration: .8 }, .4)
+    .to('#hN2',    { yPercent: 0, duration: 1  }, .55)
+    .to('#hLine',  { opacity: .7, duration: .6 }, .9)
+    .to('#hDate',  { opacity: 1, duration: .7  }, 1.05)
+    .to('#hScroll',{ opacity: 1, duration: .5  }, 1.5);
 
   gsap.to('#heroBg', {
     yPercent: 22, ease: 'none',
@@ -1407,8 +1403,8 @@ function scrollAnims() {
 
   initItinerary();
 
-  gsap.from('.dc-sub', { opacity:0, y:18, duration:.65, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 82%', once:true } });
-  gsap.from(['.dc-cols','.dc-note'], { opacity:0, y:22, duration:.6, stagger:.12, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 80%', once:true } });
+  gsap.from('.dc-main-style', { opacity:0, y:18, duration:.8, ease:'power3.out', scrollTrigger:{ trigger:'#dresscode', start:'top 84%', once:true } });
+  gsap.from(['.dc-cols','.dc-note'], { opacity:0, y:22, duration:.6, stagger:.14, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 80%', once:true } });
 
   gsap.from(['.fam-ttl','.fam-card'], { opacity:0, y:20, duration:.6, stagger:.1, ease, scrollTrigger:{ trigger:'#family', start:'top 78%', once:true } });
 
