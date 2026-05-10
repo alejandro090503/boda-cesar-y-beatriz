@@ -1055,6 +1055,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // RSVP: leer pases desde URL
   initRSVP();
 
+  // Cuenta regresiva arranca de inmediato
+  countdown();
+  setInterval(countdown, 1000);
+
   // Loader auto-dismiss
   setTimeout(dismissLoader, 1800);
 });
