@@ -68,15 +68,24 @@ function Particles() {
 
 /* ─── LOADER ─────────────────────────────────────── */
 function Loader({ onDone }: { onDone: () => void }) {
-  useEffect(() => { const t = setTimeout(onDone, 2200); return () => clearTimeout(t); }, [onDone]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { const t = setTimeout(onDone, 2000); return () => clearTimeout(t); }, []);
   return (
-    <motion.div id="loader" exit={{ opacity: 0 }} transition={{ duration: 0.6 }}>
+    <div
+      id="loader"
+      onClick={onDone}
+      style={{ cursor: "pointer" }}
+      title="Toca para abrir"
+    >
       <div className="loader-mono">C <span className="amp">&</span> B</div>
       <p style={{ fontFamily: "var(--font-sans)", fontSize: "10px", letterSpacing: "0.5em", textTransform: "uppercase", color: "var(--beige)", opacity: 0.5 }}>
         10 · 10 · 2026
       </p>
       <div className="loader-bar" />
-    </motion.div>
+      <p style={{ fontFamily: "var(--font-sans)", fontSize: "9px", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--beige)", opacity: 0.25, marginTop: "8px" }}>
+        toca para abrir
+      </p>
+    </div>
   );
 }
 
